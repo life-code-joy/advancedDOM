@@ -30,8 +30,7 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
-
-// select entire document 
+// select entire document
 console.log(document);
 console.log(document.documentElement);
 
@@ -39,7 +38,8 @@ console.log(document.documentElement);
 const header = document.querySelector('.header');
 const message = document.createElement('div');
 message.classList.add('cookie-message');
-message.innerHTML = '<h3>We use cookies for better functionality and they are delicious!</h3><button class="btn btn--close-cookie">Got it and delicious</button>';
+message.innerHTML =
+  '<h3>We use cookies for better functionality and they are delicious!</h3><button class="btn btn--close-cookie">Got it and delicious</button>';
 // header.prepend(message);
 header.append(message);
 // header.append(message.cloneNode(true));
@@ -49,8 +49,45 @@ header.append(message);
 
 //remove element
 
-document.querySelector('.btn--close-cookie').addEventListener('click', function(){
-  message.remove();
-});
+document
+  .querySelector('.btn--close-cookie')
+  .addEventListener('click', function () {
+    message.remove();
+  });
+// get computed style
+message.style.backgroundColor = '#37383d';
+message.style.width = '120%';
 
+// get the css from a stylesheet
+console.log(getComputedStyle(message).color);
 
+//// change height
+
+message.style.height =
+  Number.parseFloat(getComputedStyle(message).height, 10) + 80 + 'px';
+
+//change the css variable
+document.documentElement.style.setProperty('--color-primary', 'green');
+
+// attributes
+const logo = document.querySelector('.nav__logo');
+console.log(logo);
+
+console.log(logo.alt);
+console.log(logo.src);
+console.log(logo.className);
+
+console.log(logo);
+
+logo.alt = 'Beautiful minimalist logo';
+
+//non standard
+
+console.log(logo.designer); // undefined becasue not a  default attribute on the img
+
+console.log(logo.getAttribute('designer')); // will get the non-standard added attribute
+
+console.log(logo.designer);
+
+logo.setAttribute('company', 'Bankist');
+console.log(logo);
